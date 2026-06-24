@@ -273,12 +273,13 @@
 
           <!-- Bagian Kanan: Panel Hasil (Sidebar) -->
           <div class="planner-sidebar-panel">
-            <div class="sidebar-card" id="planner-summary">
-              
-              <!-- Empty State (Tampil jika belum ada menu yang dicentang) -->
-              <div id="empty-state">
-                <div class="empty-icon">
-                  <svg class="empty-icon-svg" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: #9ca3af;">
+            
+            <!-- Plate Visualization Card -->
+            <div class="plate-card" id="plate-visualization">
+              <!-- Empty State inside Plate -->
+              <div id="plate-empty-state" class="plate-empty">
+                <div class="plate-empty-icon">
+                  <svg class="empty-icon-svg" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: #9ca3af;">
                     <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path>
                     <line x1="7" y1="2" x2="7" y2="12"></line>
                     <line x1="21" y1="2" x2="21" y2="22"></line>
@@ -287,14 +288,21 @@
                     <line x1="7" y1="12" x2="7" y2="22"></line>
                   </svg>
                 </div>
-                <p class="empty-text">
-                  Belum ada menu dipilih.<br>
-                  Silakan pilih kombinasi menu sehat di sebelah kiri.
+                <p class="plate-empty-text">
+                  Piring Makanmu Kosong<br>
+                  <span>Pilih menu sehat di kiri</span>
                 </p>
               </div>
 
-              <!-- Real-time Result Panel (Dikelola via JavaScript) -->
-              <div class="planner-realtime-data">
+              <!-- Container for food illustrations -->
+              <div id="plate-food-container" class="plate-food-container"></div>
+            </div>
+
+            <!-- Details Summary Card -->
+            <div class="sidebar-card" id="planner-summary">
+              
+              <!-- Real-time Result Panel -->
+              <div class="planner-realtime-data" style="display: block;">
                 
                 <!-- Hasil Kalkulasi Angka -->
                 <div class="summary-row">
@@ -306,12 +314,12 @@
                   <span class="summary-value" id="total-price">Rp 0</span>
                 </div>
 
-                <!-- Tumpukan Visual Gambar Menu yang Terpilih (Image Stack Grid) -->
-                <div class="image-stack-section">
-                  <h4 class="image-stack-title">Tampilan Menu Piringmu</h4>
-                  <div id="image-stack-container">
-                    <!-- JS akan menyisipkan elemen <img> bertumpuk di sini -->
-                  </div>
+                <!-- Daftar Menu Terpilih -->
+                <div class="selected-menu-list-section">
+                  <h4 class="selected-menu-list-title">Daftar Menu Terpilih</h4>
+                  <ul id="selected-menu-list" class="selected-menu-list">
+                    <!-- JS akan menyisipkan list makanan terpilih di sini secara dinamis -->
+                  </ul>
                 </div>
 
                 <!-- Checklist Pemenuhan Kategori Gizi -->

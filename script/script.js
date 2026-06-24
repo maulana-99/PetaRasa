@@ -128,22 +128,24 @@ function handleCheckbox(e) {
    UPDATE SIDEBAR SUMMARY
    ========================================================= */
 function updateSummary() {
-  const emptyState   = document.getElementById('empty-state');
-  const realtimeData = document.querySelector('.planner-realtime-data');
+  const emptyState   = document.getElementById('plate-empty-state');
+  const summaryCard  = document.getElementById('planner-summary');
   const badge        = document.getElementById('balanced-menu-badge');
+  const foodContainer = document.getElementById('plate-food-container');
 
   const selected = menuData.filter(m => selectedIds.has(m.id));
 
   /* Empty state toggle */
   if (selected.length === 0) {
     emptyState.style.display    = 'flex';
-    realtimeData.style.display  = 'none';
+    summaryCard.style.display   = 'none';
     badge.style.display         = 'none';
+    foodContainer.innerHTML     = '';
     return;
   }
 
   emptyState.style.display   = 'none';
-  realtimeData.style.display = 'block';
+  summaryCard.style.display  = 'block';
 
   /* Totals */
   const totalCalories = selected.reduce((s, m) => s + m.calories, 0);
@@ -152,15 +154,53 @@ function updateSummary() {
   document.getElementById('total-calories').textContent = `${totalCalories} kkal`;
   document.getElementById('total-price').textContent    = `Rp ${formatRupiah(totalPrice)}`;
 
-  /* Image stack */
-  const imageStack = document.getElementById('image-stack-container');
-  imageStack.innerHTML = '';
-  selected.forEach(menu => {
+  /* Food Plate Illustration (max 3) */
+  foodContainer.innerHTML = '';
+  const maxIllustrations = 3;
+  const plateItems = selected.slice(0, maxIllustrations);
+  const totalSelectedCount = selected.length;
+
+  plateItems.forEach((menu, index) => {
+    const wrapper = document.createElement('div');
+    wrapper.className = `plate-food-item count-${plateItems.length}`;
+    wrapper.setAttribute('data-index', index);
+
     const img = document.createElement('img');
-    img.src   = menu.img;
-    img.alt   = menu.name;
-    img.title = menu.name;
-    imageStack.appendChild(img);
+    img.src = menu.img;
+    img.alt = menu.name;
+    img.title = `${menu.name} (${menu.category})`;
+
+    // Soft tooltip label inside the plate food item
+    const tooltip = document.createElement('span');
+    tooltip.className = 'food-tooltip';
+    tooltip.textContent = menu.name;
+
+    wrapper.appendChild(img);
+    wrapper.appendChild(tooltip);
+    foodContainer.appendChild(wrapper);
+  });
+
+  /* Extra badge if selected count > maxIllustrations */
+  if (totalSelectedCount > maxIllustrations) {
+    const extraCount = totalSelectedCount - maxIllustrations;
+    const extraBadge = document.createElement('div');
+    extraBadge.className = 'plate-extra-badge';
+    extraBadge.textContent = `+${extraCount} lainnya`;
+    extraBadge.title = `Ada ${extraCount} menu terpilih lainnya yang tidak ditampilkan di piring.`;
+    foodContainer.appendChild(extraBadge);
+  }
+
+  /* Update Selected Menu List */
+  const menuListContainer = document.getElementById('selected-menu-list');
+  menuListContainer.innerHTML = '';
+  selected.forEach(menu => {
+    const li = document.createElement('li');
+    li.className = 'selected-menu-item';
+    li.innerHTML = `
+      <span class="selected-menu-item-name" title="${menu.name}">${menu.name}</span>
+      <span class="selected-menu-item-meta">${menu.calories} kkal | Rp ${formatRupiah(menu.price)}</span>
+    `;
+    menuListContainer.appendChild(li);
   });
 
   /* Category checklist */
@@ -173,8 +213,11 @@ function updateSummary() {
   };
 
   selected.forEach(m => {
-    if (Object.prototype.hasOwnProperty.call(fulfilled, m.category)) {
-      fulfilled[m.category] = true;
+    // Sayur category in menuData might be named 'Sayur' or 'Sayuran'.
+    // Let's handle both dynamically by normalizing or matching.
+    const key = m.category === 'Sayuran' ? 'Sayur' : m.category;
+    if (Object.prototype.hasOwnProperty.call(fulfilled, key)) {
+      fulfilled[key] = true;
     }
   });
 
