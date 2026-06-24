@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PetaRasa - Perencana Menu Makanan Gizi Seimbang</title>
+    <link rel="stylesheet" href="style/style.css" />
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <header>
+      <nav class="container nav-container">
+        <a href="#" class="logo" id="logo-site">
+          <div class="logo-icon">PR</div>
+          Peta<span>Rasa</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="./index.html" class="nav-link active">Beranda</a></li>
+          <li>
+            <a href="./menuplanner.html" class="nav-link">Menu Planner</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <!-- ================= PLANNER APPLICATION SECTION ================= -->
+      <section class="planner-section" id="planner-section">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-subtitle">Aplikasi Utama</span>
+            <h2 class="section-title">Atur Menu Makan Seimbangmu</h2>
+          </div>
+
+          <div class="planner-layout">
+            <!-- Bagian Kiri: Tabel Menu Makanan -->
+            <div class="menu-table-panel">
+              <div class="panel-title-container">
+                <h3 class="panel-title">Daftar Menu Tersedia</h3>
+
+                <!-- Filter Kategori Kustom -->
+                <div class="filter-bar">
+                  <button class="filter-btn active" data-filter="all">
+                    Semua
+                  </button>
+                  <button class="filter-btn" data-filter="Makanan Pokok">
+                    Makanan Pokok
+                  </button>
+                  <button class="filter-btn" data-filter="Lauk-Pauk">
+                    Lauk-Pauk
+                  </button>
+                  <button class="filter-btn" data-filter="Sayur">Sayur</button>
+                  <button class="filter-btn" data-filter="Buah">Buah</button>
+                  <button class="filter-btn" data-filter="Minuman">
+                    Minuman
+                  </button>
+                </div>
+              </div>
+
+              <!-- Tabel Menu Utama -->
+              <div class="table-responsive">
+                <table id="menu-table">
+                  <thead>
+                    <tr>
+                      <th>Gambar</th>
+                      <th>Nama Menu</th>
+                      <th>Kategori</th>
+                      <th>Kalori</th>
+                      <th>Harga</th>
+                      <th>Pilih</th>
+                    </tr>
+                  </thead>
+                  <tbody id="menu-table-body">
+                    <!-- JS DOM Manipulation akan menyisipkan 26 baris menu di sini secara dinamis -->
+                    <!-- Baris akan dibuat menyerupai:
+                  <tr>
+                    <td class="col-img"><img src="..." alt="..."></td>
+                    <td class="col-name">Nasi Putih</td>
+                    <td class="col-category"><span class="badge">Makanan Pokok</span></td>
+                    <td class="col-calories">180 kkal</td>
+                    <td class="col-price">Rp 5.000</td>
+                    <td class="col-select"><input type="checkbox"></td>
+                  </tr>
+                  --></tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Bagian Kanan: Panel Hasil (Sidebar) -->
+            <div class="planner-sidebar-panel">
+              <!-- Plate Visualization Card -->
+              <div class="plate-card" id="plate-visualization">
+                <!-- Empty State inside Plate -->
+                <div id="plate-empty-state" class="plate-empty">
+                  <div class="plate-empty-icon">
+                    <svg
+                      class="empty-icon-svg"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="36"
+                      height="36"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      style="color: #9ca3af"
+                    >
+                      <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path>
+                      <line x1="7" y1="2" x2="7" y2="12"></line>
+                      <line x1="21" y1="2" x2="21" y2="22"></line>
+                      <path
+                        d="M21 2c-1.5 0-3 1.5-3 3v5c0 1.5 1.5 3 3 3V2z"
+                      ></path>
+                      <line x1="11" y1="12" x2="11" y2="22"></line>
+                      <line x1="7" y1="12" x2="7" y2="22"></line>
+                    </svg>
+                  </div>
+                  <p class="plate-empty-text">
+                    Piring Makanmu Kosong<br />
+                    <span>Pilih menu sehat di kiri</span>
+                  </p>
+                </div>
+
+                <!-- Container for food illustrations -->
+                <div
+                  id="plate-food-container"
+                  class="plate-food-container"
+                ></div>
+              </div>
+
+              <!-- Details Summary Card -->
+              <div class="sidebar-card" id="planner-summary">
+                <!-- Real-time Result Panel -->
+                <div class="planner-realtime-data" style="display: block">
+                  <!-- Hasil Kalkulasi Angka -->
+                  <div class="summary-row">
+                    <span class="summary-label">Total Kalori</span>
+                    <span class="summary-value" id="total-calories"
+                      >0 kkal</span
+                    >
+                  </div>
+                  <div class="summary-row">
+                    <span class="summary-label">Total Harga</span>
+                    <span class="summary-value" id="total-price">Rp 0</span>
+                  </div>
+
+                  <!-- Daftar Menu Terpilih -->
+                  <div class="selected-menu-list-section">
+                    <h4 class="selected-menu-list-title">
+                      Daftar Menu Terpilih
+                    </h4>
+                    <ul id="selected-menu-list" class="selected-menu-list">
+                      <!-- JS akan menyisipkan list makanan terpilih di sini secara dinamis -->
+                    </ul>
+                  </div>
+
+                  <!-- Checklist Pemenuhan Kategori Gizi -->
+                  <div class="checklist-section">
+                    <h4 class="checklist-title">Keterpenuhan Kategori Gizi</h4>
+                    <div class="checklist-grid">
+                      <div class="chk-item" id="chk-pokok">
+                        <div class="chk-indicator"></div>
+                        <span class="chk-label">Makanan Pokok</span>
+                      </div>
+
+                      <div class="chk-item" id="chk-lauk">
+                        <div class="chk-indicator"></div>
+                        <span class="chk-label">Lauk-Pauk</span>
+                      </div>
+
+                      <div class="chk-item" id="chk-sayur">
+                        <div class="chk-indicator"></div>
+                        <span class="chk-label">Sayur</span>
+                      </div>
+
+                      <div class="chk-item" id="chk-buah">
+                        <div class="chk-indicator"></div>
+                        <span class="chk-label">Buah</span>
+                      </div>
+
+                      <div class="chk-item" id="chk-minuman">
+                        <div class="chk-indicator"></div>
+                        <span class="chk-label">Minuman</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Dynamic Badge "Menu Seimbang!" (Hanya muncul jika kelima kategori terpenuhi) -->
+              <div id="balanced-menu-badge">
+                <svg
+                  class="badge-icon-svg"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  style="
+                    vertical-align: middle;
+                    margin-right: 6px;
+                    color: #f59e0b;
+                  "
+                >
+                  <polygon
+                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                  ></polygon>
+                </svg>
+                Menu Seimbang!
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <h3>Peta<span>Rasa</span></h3>
+          <p>
+            Aplikasi web interaktif Perencana Menu Makan Sehat dengan gizi
+            seimbang harian Anda.
+          </p>
+        </div>
+        <div class="footer-links">
+          <h4>Navigasi</h4>
+          <ul>
+            <li><a href="#">Beranda</a></li>
+            <li><a href="#planner-section">Menu Planner</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Anggota Kelompok</h4>
+          <ul class="group-members">
+            <!-- Nama & NIM Anggota Kelompok -->
+            <li>Anggota 1 (NIM. XXXXXXX)</li>
+            <li>Anggota 2 (NIM. XXXXXXX)</li>
+            <li>Anggota 3 (NIM. XXXXXXX)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="container copyright">
+        <p>&copy; 2026 PetaRasa Menu Planner. Seluruh Hak Cipta Dilindungi.</p>
+      </div>
+    </footer>
+
+    <!-- Script JS Eksternal (akan dikerjakan kemudian) -->
+    <script src="script/script.js"></script>
+  </body>
+</html>

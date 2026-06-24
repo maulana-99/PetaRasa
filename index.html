@@ -1,407 +1,498 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PetaRasa - Perencana Menu Makanan Gizi Seimbang</title>
-  <!-- Link ke CSS Eksternal (akan dikerjakan kemudian) -->
-  <link rel="stylesheet" href="style/style.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PetaRasa - Perencana Menu Makanan Gizi Seimbang</title>
+    <!-- Link ke CSS Eksternal (akan dikerjakan kemudian) -->
+    <link rel="stylesheet" href="style/style.css" />
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <header>
+      <nav class="container nav-container">
+        <a href="#" class="logo" id="logo-site">
+          <div class="logo-icon">PR</div>
+          Peta<span>Rasa</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="./index.html" class="nav-link active">Beranda</a></li>
+          <li>
+            <a href="./menuplanner.html" class="nav-link">Menu Planner</a>
+          </li>
+        </ul>
+        <a href="./menuplanner.html" class="btn btn-primary btn-cta"
+          >Mulai Rencana</a
+        >
+      </nav>
+    </header>
 
-  <!-- Navigation Bar -->
-  <header>
-    <nav class="container nav-container">
-      <a href="#" class="logo" id="logo-site">
-        <div class="logo-icon">PR</div>
-        Peta<span>Rasa</span>
-      </a>
-      <ul class="nav-links">
-        <li><a href="#" class="nav-link active">Beranda</a></li>
-        <li><a href="#planner-section" class="nav-link">Menu Planner</a></li>
-      </ul>
-      <a href="#planner-section" class="btn btn-primary btn-cta">Mulai Rencana</a>
-    </nav>
-  </header>
-
-  <main>
-    <!-- ================= LANDING PAGE SECTION ================= -->
-    <!-- Hero / Banner Section -->
-    <section class="hero" id="hero-section">
-      <div class="container hero-grid">
-        <div class="hero-content">
-          <div class="hero-tag">
-            <svg class="icon-svg tag-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 6px; color: #10b981;">
-              <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 3.5 1 9.8a7 7 0 0 1-9 8.2z"></path>
-              <path d="M9 22v-4H5"></path>
-            </svg> Perencana Nutrisi Interaktif
+    <main>
+      <!-- ================= LANDING PAGE SECTION ================= -->
+      <!-- Hero / Banner Section -->
+      <section class="hero" id="hero-section">
+        <div class="container hero-grid">
+          <div class="hero-content">
+            <div class="hero-tag">
+              <svg
+                class="icon-svg tag-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                style="
+                  vertical-align: middle;
+                  margin-right: 6px;
+                  color: #10b981;
+                "
+              >
+                <path
+                  d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 3.5 1 9.8a7 7 0 0 1-9 8.2z"
+                ></path>
+                <path d="M9 22v-4H5"></path>
+              </svg>
+              Perencana Nutrisi Interaktif
+            </div>
+            <h1 class="hero-title">
+              Pilih Menu Makanmu, <span>Seimbangkan Gizimu</span>
+            </h1>
+            <p class="hero-description">
+              PetaRasa adalah platform perencana menu makan interaktif yang
+              membantu Anda menyusun piring makan sehat harian. Pilih kombinasi
+              menu terbaik dan pantau kandungan kalori serta budget belanja Anda
+              secara real-time.
+            </p>
+            <div class="hero-actions">
+              <a href="#planner-section" class="btn btn-primary btn-cta"
+                >Buat Rencana Makan</a
+              >
+              <a href="#concept-section" class="btn btn-outline"
+                >Pelajari Konsep</a
+              >
+            </div>
           </div>
-          <h1 class="hero-title">Pilih Menu Makanmu, <span>Seimbangkan Gizimu</span></h1>
-          <p class="hero-description">
-            PetaRasa adalah platform perencana menu makan interaktif yang membantu Anda menyusun piring makan sehat harian. Pilih kombinasi menu terbaik dan pantau kandungan kalori serta budget belanja Anda secara real-time.
+          <div class="hero-image-container">
+            <img
+              class="hero-img"
+              src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&q=80"
+              alt="Makanan Sehat Gizi Seimbang"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Concept Section -->
+      <section class="concept" id="concept-section">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-subtitle">Konsep Menu Seimbang</span>
+            <h2 class="section-title">Penuhi 5 Kategori Gizi Harian Anda</h2>
+          </div>
+
+          <div class="concept-grid">
+            <div class="concept-card">
+              <div class="concept-icon">
+                <svg
+                  class="concept-icon-svg"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="32"
+                  height="32"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  style="color: #f59e0b"
+                >
+                  <path d="M2 12c0 5 4 9 9 9h2c5 0 9-4 9-9H2z"></path>
+                  <path d="M12 12v-4"></path>
+                  <path d="M8 12c0-2.5 2-3 2-3"></path>
+                  <path d="M16 12c0-2.5-2-3-2-3"></path>
+                </svg>
+              </div>
+              <h3>Makanan Pokok</h3>
+              <p>
+                Sumber karbohidrat utama sebagai bahan energi tubuh untuk
+                beraktivitas sehari-hari.
+              </p>
+            </div>
+            <div class="concept-card">
+              <div class="concept-icon">
+                <svg
+                  class="concept-icon-svg"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="32"
+                  height="32"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  style="color: #ef4444"
+                >
+                  <path
+                    d="M18 2c.8.8.8 2 0 2.8l-1.4 1.4-2.8-2.8L15.2.6C16 .2 17.2.2 18 2z"
+                  ></path>
+                  <path
+                    d="M15.2 6.4C13 4.2 9.5 4.5 7.5 7s-.8 5.7 1.4 7.9 5.4 1.9 7.9-.8 2.8-5.7.4-7.7z"
+                  ></path>
+                  <path
+                    d="M8.9 14.5L3.6 19.8c-.8.8-2 .8-2.8 0s-.8-2 0-2.8l5.3-5.3"
+                  ></path>
+                  <path
+                    d="M2.5 21.5c.8.8 2 .8 2.8 0s.8-2 0-2.8L2.5 21.5z"
+                  ></path>
+                </svg>
+              </div>
+              <h3>Lauk-Pauk</h3>
+              <p>
+                Sumber protein hewani dan nabati untuk membangun dan memperbaiki
+                jaringan sel tubuh.
+              </p>
+            </div>
+            <div class="concept-card">
+              <div class="concept-icon">
+                <svg
+                  class="concept-icon-svg"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="32"
+                  height="32"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  style="color: #10b981"
+                >
+                  <path
+                    d="M12 12V21M12 12c1.5-1.5 3-1 4-2.5s.5-3-1-4-3 .5-4 2c-1-1.5-2.5-2.5-4-2s-2 2.5-1 4 2.5 1 4 2.5z"
+                  ></path>
+                  <path d="M9 17l-2 2M15 17l2 2"></path>
+                </svg>
+              </div>
+              <h3>Sayuran</h3>
+              <p>
+                Kaya akan serat, vitamin, dan mineral penting untuk kelancaran
+                sistem pencernaan.
+              </p>
+            </div>
+            <div class="concept-card">
+              <div class="concept-icon">
+                <svg
+                  class="concept-icon-svg"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="32"
+                  height="32"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  style="color: #ec4899"
+                >
+                  <path
+                    d="M12 22c-3 0-5-2-7-5C3 14 3 10 5 8c1.5-1.5 3.5-2 5-1 1-.7 2-.7 3 0 1.5-1 3.5-.5 5 1 2 2 2 6 0 9-2 3-4 5-7 5z"
+                  ></path>
+                  <path d="M12 7c0-2 1-3 3-3"></path>
+                </svg>
+              </div>
+              <h3>Buah-Buahan</h3>
+              <p>
+                Penyedia antioksidan dan vitamin alami guna menjaga imunitas
+                tubuh tetap prima.
+              </p>
+            </div>
+            <div class="concept-card">
+              <div class="concept-icon">
+                <svg
+                  class="concept-icon-svg"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="32"
+                  height="32"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  style="color: #3b82f6"
+                >
+                  <path d="M6 9l1.5 12h9L18 9H6z"></path>
+                  <path d="M5 9h14"></path>
+                  <path d="M12 9V3h4"></path>
+                </svg>
+              </div>
+              <h3>Minuman</h3>
+              <p>
+                Menjaga hidrasi tubuh sepanjang hari untuk mendukung kelancaran
+                metabolisme.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Highlight Menu Favorit -->
+      <section class="favorites" id="favorites-section">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-subtitle">Highlight Menu</span>
+            <h2 class="section-title">Kombinasi Menu Terpopuler</h2>
+          </div>
+
+          <div class="favorites-grid">
+            <!-- Card Favorit 1 -->
+            <div class="favorite-card">
+              <div class="fav-img-wrapper">
+                <img
+                  class="fav-img"
+                  src="https://images.unsplash.com/photo-1544025162-d76694265947?w=500&q=80"
+                  alt="Beef Steak Sirloin"
+                />
+                <span class="fav-tag">Premium Choice</span>
+              </div>
+              <div class="fav-body">
+                <h3>Beef Steak Sirloin</h3>
+                <div class="fav-nutrition">
+                  <span>
+                    <svg
+                      class="fav-icon-svg"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      style="
+                        vertical-align: middle;
+                        margin-right: 4px;
+                        color: #f97316;
+                      "
+                    >
+                      <path
+                        d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"
+                      ></path></svg
+                    >420 kkal
+                  </span>
+                  <span>
+                    <svg
+                      class="fav-icon-svg"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      style="
+                        vertical-align: middle;
+                        margin-right: 4px;
+                        color: #ef4444;
+                      "
+                    >
+                      <path
+                        d="M18 2c.8.8.8 2 0 2.8l-1.4 1.4-2.8-2.8L15.2.6C16 .2 17.2.2 18 2z"
+                      ></path>
+                      <path
+                        d="M15.2 6.4C13 4.2 9.5 4.5 7.5 7s-.8 5.7 1.4 7.9 5.4 1.9 7.9-.8 2.8-5.7.4-7.7z"
+                      ></path>
+                      <path
+                        d="M8.9 14.5L3.6 19.8c-.8.8-2 .8-2.8 0s-.8-2 0-2.8l5.3-5.3"
+                      ></path></svg
+                    >Lauk-Pauk
+                  </span>
+                </div>
+                <div class="fav-footer">
+                  <span class="fav-price">Rp 45.000</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card Favorit 2 -->
+            <div class="favorite-card">
+              <div class="fav-img-wrapper">
+                <img
+                  class="fav-img"
+                  src="https://images.unsplash.com/photo-1512058564366-18510be2db19?w=500&q=80"
+                  alt="Nasi Goreng Spesial"
+                />
+                <span class="fav-tag">Indonesian Taste</span>
+              </div>
+              <div class="fav-body">
+                <h3>Nasi Goreng Spesial</h3>
+                <div class="fav-nutrition">
+                  <span>
+                    <svg
+                      class="fav-icon-svg"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      style="
+                        vertical-align: middle;
+                        margin-right: 4px;
+                        color: #f97316;
+                      "
+                    >
+                      <path
+                        d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"
+                      ></path></svg
+                    >450 kkal
+                  </span>
+                  <span>
+                    <svg
+                      class="fav-icon-svg"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      style="
+                        vertical-align: middle;
+                        margin-right: 4px;
+                        color: #f59e0b;
+                      "
+                    >
+                      <path d="M2 12c0 5 4 9 9 9h2c5 0 9-4 9-9H2z"></path>
+                      <path d="M12 12v-4"></path>
+                      <path d="M8 12c0-2.5 2-3 2-3"></path>
+                      <path d="M16 12c0-2.5-2-3-2-3"></path></svg
+                    >Makanan Pokok
+                  </span>
+                </div>
+                <div class="fav-footer">
+                  <span class="fav-price">Rp 18.000</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card Favorit 3 -->
+            <div class="favorite-card">
+              <div class="fav-img-wrapper">
+                <img
+                  class="fav-img"
+                  src="https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?w=500&q=80"
+                  alt="Fruit Salad Cup"
+                />
+                <span class="fav-tag">Healthy Snack</span>
+              </div>
+              <div class="fav-body">
+                <h3>Fruit Salad Cup</h3>
+                <div class="fav-nutrition">
+                  <span>
+                    <svg
+                      class="fav-icon-svg"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      style="
+                        vertical-align: middle;
+                        margin-right: 4px;
+                        color: #f97316;
+                      "
+                    >
+                      <path
+                        d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"
+                      ></path></svg
+                    >140 kkal
+                  </span>
+                  <span>
+                    <svg
+                      class="fav-icon-svg"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      style="
+                        vertical-align: middle;
+                        margin-right: 4px;
+                        color: #ec4899;
+                      "
+                    >
+                      <path
+                        d="M12 22c-3 0-5-2-7-5C3 14 3 10 5 8c1.5-1.5 3.5-2 5-1 1-.7 2-.7 3 0 1.5-1 3.5-.5 5 1 2 2 2 6 0 9-2 3-4 5-7 5z"
+                      ></path>
+                      <path d="M12 7c0-2 1-3 3-3"></path></svg
+                    >Buah-Buahan
+                  </span>
+                </div>
+                <div class="fav-footer">
+                  <span class="fav-price">Rp 17.000</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <h3>Peta<span>Rasa</span></h3>
+          <p>
+            Aplikasi web interaktif Perencana Menu Makan Sehat dengan gizi
+            seimbang harian Anda.
           </p>
-          <div class="hero-actions">
-            <a href="#planner-section" class="btn btn-primary btn-cta">Buat Rencana Makan</a>
-            <a href="#concept-section" class="btn btn-outline">Pelajari Konsep</a>
-          </div>
         </div>
-        <div class="hero-image-container">
-          <img class="hero-img" src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&q=80" alt="Makanan Sehat Gizi Seimbang">
+        <div class="footer-links">
+          <h4>Navigasi</h4>
+          <ul>
+            <li><a href="#">Beranda</a></li>
+            <li><a href="#planner-section">Menu Planner</a></li>
+          </ul>
         </div>
-      </div>
-    </section>
-
-    <!-- Concept Section -->
-    <section class="concept" id="concept-section">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-subtitle">Konsep Menu Seimbang</span>
-          <h2 class="section-title">Penuhi 5 Kategori Gizi Harian Anda</h2>
-        </div>
-        
-        <div class="concept-grid">
-          <div class="concept-card">
-            <div class="concept-icon">
-              <svg class="concept-icon-svg" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #f59e0b;">
-                <path d="M2 12c0 5 4 9 9 9h2c5 0 9-4 9-9H2z"></path>
-                <path d="M12 12v-4"></path>
-                <path d="M8 12c0-2.5 2-3 2-3"></path>
-                <path d="M16 12c0-2.5-2-3-2-3"></path>
-              </svg>
-            </div>
-            <h3>Makanan Pokok</h3>
-            <p>Sumber karbohidrat utama sebagai bahan energi tubuh untuk beraktivitas sehari-hari.</p>
-          </div>
-          <div class="concept-card">
-            <div class="concept-icon">
-              <svg class="concept-icon-svg" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #ef4444;">
-                <path d="M18 2c.8.8.8 2 0 2.8l-1.4 1.4-2.8-2.8L15.2.6C16 .2 17.2.2 18 2z"></path>
-                <path d="M15.2 6.4C13 4.2 9.5 4.5 7.5 7s-.8 5.7 1.4 7.9 5.4 1.9 7.9-.8 2.8-5.7.4-7.7z"></path>
-                <path d="M8.9 14.5L3.6 19.8c-.8.8-2 .8-2.8 0s-.8-2 0-2.8l5.3-5.3"></path>
-                <path d="M2.5 21.5c.8.8 2 .8 2.8 0s.8-2 0-2.8L2.5 21.5z"></path>
-              </svg>
-            </div>
-            <h3>Lauk-Pauk</h3>
-            <p>Sumber protein hewani dan nabati untuk membangun dan memperbaiki jaringan sel tubuh.</p>
-          </div>
-          <div class="concept-card">
-            <div class="concept-icon">
-              <svg class="concept-icon-svg" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #10b981;">
-                <path d="M12 12V21M12 12c1.5-1.5 3-1 4-2.5s.5-3-1-4-3 .5-4 2c-1-1.5-2.5-2.5-4-2s-2 2.5-1 4 2.5 1 4 2.5z"></path>
-                <path d="M9 17l-2 2M15 17l2 2"></path>
-              </svg>
-            </div>
-            <h3>Sayuran</h3>
-            <p>Kaya akan serat, vitamin, dan mineral penting untuk kelancaran sistem pencernaan.</p>
-          </div>
-          <div class="concept-card">
-            <div class="concept-icon">
-              <svg class="concept-icon-svg" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #ec4899;">
-                <path d="M12 22c-3 0-5-2-7-5C3 14 3 10 5 8c1.5-1.5 3.5-2 5-1 1-.7 2-.7 3 0 1.5-1 3.5-.5 5 1 2 2 2 6 0 9-2 3-4 5-7 5z"></path>
-                <path d="M12 7c0-2 1-3 3-3"></path>
-              </svg>
-            </div>
-            <h3>Buah-Buahan</h3>
-            <p>Penyedia antioksidan dan vitamin alami guna menjaga imunitas tubuh tetap prima.</p>
-          </div>
-          <div class="concept-card">
-            <div class="concept-icon">
-              <svg class="concept-icon-svg" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #3b82f6;">
-                <path d="M6 9l1.5 12h9L18 9H6z"></path>
-                <path d="M5 9h14"></path>
-                <path d="M12 9V3h4"></path>
-              </svg>
-            </div>
-            <h3>Minuman</h3>
-            <p>Menjaga hidrasi tubuh sepanjang hari untuk mendukung kelancaran metabolisme.</p>
-          </div>
+        <div class="footer-links">
+          <h4>Anggota Kelompok</h4>
+          <ul class="group-members">
+            <!-- Nama & NIM Anggota Kelompok -->
+            <li>Anggota 1 (NIM. XXXXXXX)</li>
+            <li>Anggota 2 (NIM. XXXXXXX)</li>
+            <li>Anggota 3 (NIM. XXXXXXX)</li>
+          </ul>
         </div>
       </div>
-    </section>
-
-    <!-- Highlight Menu Favorit -->
-    <section class="favorites" id="favorites-section">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-subtitle">Highlight Menu</span>
-          <h2 class="section-title">Kombinasi Menu Terpopuler</h2>
-        </div>
-        
-        <div class="favorites-grid">
-          <!-- Card Favorit 1 -->
-          <div class="favorite-card">
-            <div class="fav-img-wrapper">
-              <img class="fav-img" src="https://images.unsplash.com/photo-1544025162-d76694265947?w=500&q=80" alt="Beef Steak Sirloin">
-              <span class="fav-tag">Premium Choice</span>
-            </div>
-            <div class="fav-body">
-              <h3>Beef Steak Sirloin</h3>
-              <div class="fav-nutrition">
-                <span>
-                  <svg class="fav-icon-svg" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 4px; color: #f97316;">
-                    <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path>
-                  </svg>420 kkal
-                </span>
-                <span>
-                  <svg class="fav-icon-svg" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 4px; color: #ef4444;">
-                    <path d="M18 2c.8.8.8 2 0 2.8l-1.4 1.4-2.8-2.8L15.2.6C16 .2 17.2.2 18 2z"></path>
-                    <path d="M15.2 6.4C13 4.2 9.5 4.5 7.5 7s-.8 5.7 1.4 7.9 5.4 1.9 7.9-.8 2.8-5.7.4-7.7z"></path>
-                    <path d="M8.9 14.5L3.6 19.8c-.8.8-2 .8-2.8 0s-.8-2 0-2.8l5.3-5.3"></path>
-                  </svg>Lauk-Pauk
-                </span>
-              </div>
-              <div class="fav-footer">
-                <span class="fav-price">Rp 45.000</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card Favorit 2 -->
-          <div class="favorite-card">
-            <div class="fav-img-wrapper">
-              <img class="fav-img" src="https://images.unsplash.com/photo-1512058564366-18510be2db19?w=500&q=80" alt="Nasi Goreng Spesial">
-              <span class="fav-tag">Indonesian Taste</span>
-            </div>
-            <div class="fav-body">
-              <h3>Nasi Goreng Spesial</h3>
-              <div class="fav-nutrition">
-                <span>
-                  <svg class="fav-icon-svg" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 4px; color: #f97316;">
-                    <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path>
-                  </svg>450 kkal
-                </span>
-                <span>
-                  <svg class="fav-icon-svg" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 4px; color: #f59e0b;">
-                    <path d="M2 12c0 5 4 9 9 9h2c5 0 9-4 9-9H2z"></path>
-                    <path d="M12 12v-4"></path>
-                    <path d="M8 12c0-2.5 2-3 2-3"></path>
-                    <path d="M16 12c0-2.5-2-3-2-3"></path>
-                  </svg>Makanan Pokok
-                </span>
-              </div>
-              <div class="fav-footer">
-                <span class="fav-price">Rp 18.000</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card Favorit 3 -->
-          <div class="favorite-card">
-            <div class="fav-img-wrapper">
-              <img class="fav-img" src="https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?w=500&q=80" alt="Fruit Salad Cup">
-              <span class="fav-tag">Healthy Snack</span>
-            </div>
-            <div class="fav-body">
-              <h3>Fruit Salad Cup</h3>
-              <div class="fav-nutrition">
-                <span>
-                  <svg class="fav-icon-svg" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 4px; color: #f97316;">
-                    <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path>
-                  </svg>140 kkal
-                </span>
-                <span>
-                  <svg class="fav-icon-svg" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 4px; color: #ec4899;">
-                    <path d="M12 22c-3 0-5-2-7-5C3 14 3 10 5 8c1.5-1.5 3.5-2 5-1 1-.7 2-.7 3 0 1.5-1 3.5-.5 5 1 2 2 2 6 0 9-2 3-4 5-7 5z"></path>
-                    <path d="M12 7c0-2 1-3 3-3"></path>
-                  </svg>Buah-Buahan
-                </span>
-              </div>
-              <div class="fav-footer">
-                <span class="fav-price">Rp 17.000</span>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="container copyright">
+        <p>&copy; 2026 PetaRasa Menu Planner. Seluruh Hak Cipta Dilindungi.</p>
       </div>
-    </section>
+    </footer>
 
-    <!-- ================= PLANNER APPLICATION SECTION ================= -->
-    <section class="planner-section" id="planner-section">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-subtitle">Aplikasi Utama</span>
-          <h2 class="section-title">Atur Menu Makan Seimbangmu</h2>
-        </div>
-
-        <div class="planner-layout">
-          
-          <!-- Bagian Kiri: Tabel Menu Makanan -->
-          <div class="menu-table-panel">
-            <div class="panel-title-container">
-              <h3 class="panel-title">Daftar Menu Tersedia</h3>
-              
-              <!-- Filter Kategori Kustom -->
-              <div class="filter-bar">
-                <button class="filter-btn active" data-filter="all">Semua</button>
-                <button class="filter-btn" data-filter="Makanan Pokok">Makanan Pokok</button>
-                <button class="filter-btn" data-filter="Lauk-Pauk">Lauk-Pauk</button>
-                <button class="filter-btn" data-filter="Sayur">Sayur</button>
-                <button class="filter-btn" data-filter="Buah">Buah</button>
-                <button class="filter-btn" data-filter="Minuman">Minuman</button>
-              </div>
-            </div>
-
-            <!-- Tabel Menu Utama -->
-            <div class="table-responsive">
-              <table id="menu-table">
-                <thead>
-                  <tr>
-                    <th>Gambar</th>
-                    <th>Nama Menu</th>
-                    <th>Kategori</th>
-                    <th>Kalori</th>
-                    <th>Harga</th>
-                    <th>Pilih</th>
-                  </tr>
-                </thead>
-                <tbody id="menu-table-body">
-                  <!-- JS DOM Manipulation akan menyisipkan 26 baris menu di sini secara dinamis -->
-                  <!-- Baris akan dibuat menyerupai:
-                  <tr>
-                    <td class="col-img"><img src="..." alt="..."></td>
-                    <td class="col-name">Nasi Putih</td>
-                    <td class="col-category"><span class="badge">Makanan Pokok</span></td>
-                    <td class="col-calories">180 kkal</td>
-                    <td class="col-price">Rp 5.000</td>
-                    <td class="col-select"><input type="checkbox"></td>
-                  </tr>
-                  -->
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          <!-- Bagian Kanan: Panel Hasil (Sidebar) -->
-          <div class="planner-sidebar-panel">
-            
-            <!-- Plate Visualization Card -->
-            <div class="plate-card" id="plate-visualization">
-              <!-- Empty State inside Plate -->
-              <div id="plate-empty-state" class="plate-empty">
-                <div class="plate-empty-icon">
-                  <svg class="empty-icon-svg" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: #9ca3af;">
-                    <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path>
-                    <line x1="7" y1="2" x2="7" y2="12"></line>
-                    <line x1="21" y1="2" x2="21" y2="22"></line>
-                    <path d="M21 2c-1.5 0-3 1.5-3 3v5c0 1.5 1.5 3 3 3V2z"></path>
-                    <line x1="11" y1="12" x2="11" y2="22"></line>
-                    <line x1="7" y1="12" x2="7" y2="22"></line>
-                  </svg>
-                </div>
-                <p class="plate-empty-text">
-                  Piring Makanmu Kosong<br>
-                  <span>Pilih menu sehat di kiri</span>
-                </p>
-              </div>
-
-              <!-- Container for food illustrations -->
-              <div id="plate-food-container" class="plate-food-container"></div>
-            </div>
-
-            <!-- Details Summary Card -->
-            <div class="sidebar-card" id="planner-summary">
-              
-              <!-- Real-time Result Panel -->
-              <div class="planner-realtime-data" style="display: block;">
-                
-                <!-- Hasil Kalkulasi Angka -->
-                <div class="summary-row">
-                  <span class="summary-label">Total Kalori</span>
-                  <span class="summary-value" id="total-calories">0 kkal</span>
-                </div>
-                <div class="summary-row">
-                  <span class="summary-label">Total Harga</span>
-                  <span class="summary-value" id="total-price">Rp 0</span>
-                </div>
-
-                <!-- Daftar Menu Terpilih -->
-                <div class="selected-menu-list-section">
-                  <h4 class="selected-menu-list-title">Daftar Menu Terpilih</h4>
-                  <ul id="selected-menu-list" class="selected-menu-list">
-                    <!-- JS akan menyisipkan list makanan terpilih di sini secara dinamis -->
-                  </ul>
-                </div>
-
-                <!-- Checklist Pemenuhan Kategori Gizi -->
-                <div class="checklist-section">
-                  <h4 class="checklist-title">Keterpenuhan Kategori Gizi</h4>
-                  <div class="checklist-grid">
-                    
-                    <div class="chk-item" id="chk-pokok">
-                      <div class="chk-indicator"></div>
-                      <span class="chk-label">Makanan Pokok</span>
-                    </div>
-                    
-                    <div class="chk-item" id="chk-lauk">
-                      <div class="chk-indicator"></div>
-                      <span class="chk-label">Lauk-Pauk</span>
-                    </div>
-                    
-                    <div class="chk-item" id="chk-sayur">
-                      <div class="chk-indicator"></div>
-                      <span class="chk-label">Sayur</span>
-                    </div>
-                    
-                    <div class="chk-item" id="chk-buah">
-                      <div class="chk-indicator"></div>
-                      <span class="chk-label">Buah</span>
-                    </div>
-                    
-                    <div class="chk-item" id="chk-minuman">
-                      <div class="chk-indicator"></div>
-                      <span class="chk-label">Minuman</span>
-                    </div>
-
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
-            <!-- Dynamic Badge "Menu Seimbang!" (Hanya muncul jika kelima kategori terpenuhi) -->
-            <div id="balanced-menu-badge">
-              <svg class="badge-icon-svg" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 6px; color: #f59e0b;">
-                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-              </svg>Menu Seimbang!
-            </div>
-            
-          </div>
-
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer>
-    <div class="container footer-grid">
-      <div class="footer-brand">
-        <h3>Peta<span>Rasa</span></h3>
-        <p>Aplikasi web interaktif Perencana Menu Makan Sehat dengan gizi seimbang harian Anda.</p>
-      </div>
-      <div class="footer-links">
-        <h4>Navigasi</h4>
-        <ul>
-          <li><a href="#">Beranda</a></li>
-          <li><a href="#planner-section">Menu Planner</a></li>
-        </ul>
-      </div>
-      <div class="footer-links">
-        <h4>Anggota Kelompok</h4>
-        <ul class="group-members">
-          <!-- Nama & NIM Anggota Kelompok -->
-          <li>Anggota 1 (NIM. XXXXXXX)</li>
-          <li>Anggota 2 (NIM. XXXXXXX)</li>
-          <li>Anggota 3 (NIM. XXXXXXX)</li>
-        </ul>
-      </div>
-    </div>
-    <div class="container copyright">
-      <p>&copy; 2026 PetaRasa Menu Planner. Seluruh Hak Cipta Dilindungi.</p>
-    </div>
-  </footer>
-
-  <!-- Script JS Eksternal (akan dikerjakan kemudian) -->
-  <script src="script/script.js"></script>
-</body>
+    <!-- Script JS Eksternal (akan dikerjakan kemudian) -->
+    <script src="script/script.js"></script>
+  </body>
 </html>
