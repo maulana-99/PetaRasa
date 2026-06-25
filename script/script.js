@@ -9,8 +9,8 @@ const menuData = [
   { id:  2, name: 'Nasi Goreng Spesial',   category: 'Makanan Pokok', calories: 450, price: 18000, img: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?w=200&q=80' },
   { id:  3, name: 'Mie Goreng Jawa',       category: 'Makanan Pokok', calories: 380, price: 16000, img: 'https://cnc-magazine.oramiland.com/parenting/original_images/Mie_Goreng_Jawa_Pedas.jpg' },
   { id:  4, name: 'Spaghetti Aglio Olio',  category: 'Makanan Pokok', calories: 420, price: 28000, img: 'https://awsimages.detik.net.id/community/media/visual/2021/03/19/spaghetti-aglio-olio_43.jpeg?w=600&q=90' },
-  { id:  5, name: 'Kentang Panggang',       category: 'Makanan Pokok', calories: 220, price: 15000, img: 'https://cdn.loveandlemons.com/wp-content/uploads/2024/11/twice-baked-potatoes-recipe.jpg' },
-  { id:  6, name: 'Roti Gandum (2 lembar)', category: 'Makanan Pokok', calories: 160, price:  8000, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7K-DAXaze0zYzJqNXdUZMjs3PGlsksVsDR-fhzzqjhA&s=10' },
+  { id:  5, name: 'Kentang Panggang',      category: 'Makanan Pokok', calories: 220, price: 15000, img: 'https://cdn.loveandlemons.com/wp-content/uploads/2024/11/twice-baked-potatoes-recipe.jpg' },
+  { id:  6, name: 'Roti Gandum (2 lembar)',category: 'Makanan Pokok', calories: 160, price:  8000, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7K-DAXaze0zYzJqNXdUZMjs3PGlsksVsDR-fhzzqjhA&s=10' },
   // Lauk-Pauk
   { id:  7, name: 'Ayam Goreng Tepung',    category: 'Lauk-Pauk', calories: 300, price: 17000, img: 'https://images.unsplash.com/photo-1562967914-608f82629710?w=200&q=80' },
   { id:  8, name: 'Ayam Bakar Madu',       category: 'Lauk-Pauk', calories: 280, price: 20000, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNdAjBeTycETsU3Dh4Tayt7PQ4PruDzbPChaxxWb6zOA&s=10' },
@@ -40,11 +40,11 @@ const menuData = [
 /* =========================================================
    STATE
    ========================================================= */
-let selectedIds = new Set();
+let selectedIds = [];
 let activeFilter = 'all';
 
 /* =========================================================
-   HELPERS
+   HELPER
    ========================================================= */
 function getCategoryClass(category) {
   const map = {
@@ -54,7 +54,7 @@ function getCategoryClass(category) {
     'Buah':          'buah',
     'Minuman':       'minuman',
   };
-  return map[category] ?? 'pokok';
+  return map[category] || 'pokok';
 }
 
 function formatRupiah(number) {
@@ -70,38 +70,28 @@ function renderTable() {
 
   const visible = activeFilter === 'all'
     ? menuData
-    : menuData.filter(m => m.category === activeFilter);
+    : menuData.filter(function(m) { return m.category === activeFilter; });
 
-  visible.forEach(menu => {
+  visible.forEach(function(menu) {
     const tr = document.createElement('tr');
-    if (selectedIds.has(menu.id)) tr.classList.add('row-selected');
+    if (selectedIds.indexOf(menu.id) !== -1) {
+      tr.classList.add('row-selected');
+    }
 
-    tr.innerHTML = `
-      <td class="col-img">
-        <img src="${menu.img}" alt="${menu.name}" loading="lazy">
-      </td>
-      <td class="col-name">${menu.name}</td>
-      <td class="col-category">
-        <span class="badge badge-${getCategoryClass(menu.category)}">${menu.category}</span>
-      </td>
-      <td class="col-calories">${menu.calories} kkal</td>
-      <td class="col-price">Rp ${formatRupiah(menu.price)}</td>
-      <td class="col-select">
-        <input
-          type="checkbox"
-          class="menu-checkbox"
-          data-id="${menu.id}"
-          ${selectedIds.has(menu.id) ? 'checked' : ''}
-          aria-label="Pilih ${menu.name}"
-        >
-      </td>
-    `;
+    tr.innerHTML =
+      '<td class="col-img"><img src="' + menu.img + '" alt="' + menu.name + '" loading="lazy"></td>' +
+      '<td class="col-name">' + menu.name + '</td>' +
+      '<td class="col-category"><span class="badge badge-' + getCategoryClass(menu.category) + '">' + menu.category + '</span></td>' +
+      '<td class="col-calories">' + menu.calories + ' kkal</td>' +
+      '<td class="col-price">Rp ' + formatRupiah(menu.price) + '</td>' +
+      '<td class="col-select"><input type="checkbox" class="menu-checkbox" data-id="' + menu.id + '" ' + (selectedIds.indexOf(menu.id) !== -1 ? 'checked' : '') + ' aria-label="Pilih ' + menu.name + '"></td>';
 
     tbody.appendChild(tr);
   });
 
-  /* Attach listeners to freshly rendered checkboxes */
-  tbody.querySelectorAll('.menu-checkbox').forEach(cb => {
+  // Attach addEventListener pada setiap checkbox
+  var checkboxes = tbody.querySelectorAll('.menu-checkbox');
+  checkboxes.forEach(function(cb) {
     cb.addEventListener('change', handleCheckbox);
   });
 }
@@ -110,14 +100,14 @@ function renderTable() {
    CHECKBOX HANDLER
    ========================================================= */
 function handleCheckbox(e) {
-  const id = Number(e.target.dataset.id);
-  const row = e.target.closest('tr');
+  var id = Number(e.target.dataset.id);
+  var row = e.target.closest('tr');
 
   if (e.target.checked) {
-    selectedIds.add(id);
+    selectedIds.push(id);
     row.classList.add('row-selected');
   } else {
-    selectedIds.delete(id);
+    selectedIds.splice(selectedIds.indexOf(id), 1);
     row.classList.remove('row-selected');
   }
 
@@ -125,86 +115,66 @@ function handleCheckbox(e) {
 }
 
 /* =========================================================
-   UPDATE SIDEBAR SUMMARY
+   UPDATE SIDEBAR SUMMARY (Real-time)
    ========================================================= */
 function updateSummary() {
-  const emptyState   = document.getElementById('plate-empty-state');
-  const summaryCard  = document.getElementById('planner-summary');
-  const badge        = document.getElementById('balanced-menu-badge');
-  const foodContainer = document.getElementById('plate-food-container');
+  var plateFoods         = document.getElementById('plate-foods');
+  var plateEmpty         = document.getElementById('plate-empty');
+  var selectedNamesSection = document.getElementById('selected-names-section');
+  var selectedNameList   = document.getElementById('selected-name-list');
+  var emptyMsg           = document.getElementById('empty-message');
+  var summaryCard        = document.getElementById('summary-card');
+  var badge              = document.getElementById('balanced-menu-badge');
 
-  const selected = menuData.filter(m => selectedIds.has(m.id));
+  var selected = menuData.filter(function(m) {
+    return selectedIds.indexOf(m.id) !== -1;
+  });
 
-  /* Empty state toggle */
+  // Empty state
   if (selected.length === 0) {
-    emptyState.style.display    = 'flex';
-    summaryCard.style.display   = 'none';
-    badge.style.display         = 'none';
-    foodContainer.innerHTML     = '';
+    plateFoods.innerHTML         = '';
+    plateEmpty.style.display     = 'flex';
+    selectedNamesSection.style.display = 'none';
+    emptyMsg.style.display       = 'block';
+    summaryCard.style.display    = 'none';
+    badge.style.display          = 'none';
     return;
   }
 
-  emptyState.style.display   = 'none';
-  summaryCard.style.display  = 'block';
+  plateEmpty.style.display       = 'none';
+  emptyMsg.style.display         = 'none';
+  summaryCard.style.display      = 'block';
+  selectedNamesSection.style.display = 'block';
 
-  /* Totals */
-  const totalCalories = selected.reduce((s, m) => s + m.calories, 0);
-  const totalPrice    = selected.reduce((s, m) => s + m.price,    0);
-
-  document.getElementById('total-calories').textContent = `${totalCalories} kkal`;
-  document.getElementById('total-price').textContent    = `Rp ${formatRupiah(totalPrice)}`;
-
-  /* Food Plate Illustration (max 3) */
-  foodContainer.innerHTML = '';
-  const maxIllustrations = 3;
-  const plateItems = selected.slice(0, maxIllustrations);
-  const totalSelectedCount = selected.length;
-
-  plateItems.forEach((menu, index) => {
-    const wrapper = document.createElement('div');
-    wrapper.className = `plate-food-item count-${plateItems.length}`;
-    wrapper.setAttribute('data-index', index);
-
-    const img = document.createElement('img');
-    img.src = menu.img;
-    img.alt = menu.name;
-    img.title = `${menu.name} (${menu.category})`;
-
-    // Soft tooltip label inside the plate food item
-    const tooltip = document.createElement('span');
-    tooltip.className = 'food-tooltip';
-    tooltip.textContent = menu.name;
-
-    wrapper.appendChild(img);
-    wrapper.appendChild(tooltip);
-    foodContainer.appendChild(wrapper);
-  });
-
-  /* Extra badge if selected count > maxIllustrations */
-  if (totalSelectedCount > maxIllustrations) {
-    const extraCount = totalSelectedCount - maxIllustrations;
-    const extraBadge = document.createElement('div');
-    extraBadge.className = 'plate-extra-badge';
-    extraBadge.textContent = `+${extraCount} lainnya`;
-    extraBadge.title = `Ada ${extraCount} menu terpilih lainnya yang tidak ditampilkan di piring.`;
-    foodContainer.appendChild(extraBadge);
+  // Plate — tampilkan gambar menu yang dipilih (max 6 agar tidak penuh)
+  plateFoods.innerHTML = '';
+  var maxPlate = Math.min(selected.length, 6);
+  for (var i = 0; i < maxPlate; i++) {
+    var img = document.createElement('img');
+    img.src     = selected[i].img;
+    img.alt     = selected[i].name;
+    img.title   = selected[i].name;
+    img.className = 'plate-food-img';
+    plateFoods.appendChild(img);
   }
 
-  /* Update Selected Menu List */
-  const menuListContainer = document.getElementById('selected-menu-list');
-  menuListContainer.innerHTML = '';
-  selected.forEach(menu => {
-    const li = document.createElement('li');
-    li.className = 'selected-menu-item';
-    li.innerHTML = `
-      <span class="selected-menu-item-name" title="${menu.name}">${menu.name}</span>
-      <span class="selected-menu-item-meta">${menu.calories} kkal | Rp ${formatRupiah(menu.price)}</span>
-    `;
-    menuListContainer.appendChild(li);
+  // Daftar nama menu yang dipilih
+  selectedNameList.innerHTML = '';
+  selected.forEach(function(menu) {
+    var li = document.createElement('li');
+    li.textContent = menu.name;
+    selectedNameList.appendChild(li);
   });
 
-  /* Category checklist */
-  const fulfilled = {
+  // Kalkulasi total kalori dan harga
+  var totalCalories = selected.reduce(function(s, m) { return s + m.calories; }, 0);
+  var totalPrice    = selected.reduce(function(s, m) { return s + m.price; }, 0);
+
+  document.getElementById('total-calories').textContent = totalCalories + ' kkal';
+  document.getElementById('total-price').textContent    = 'Rp ' + formatRupiah(totalPrice);
+
+  // Checklist 5 kategori gizi
+  var fulfilled = {
     'Makanan Pokok': false,
     'Lauk-Pauk':     false,
     'Sayur':         false,
@@ -212,16 +182,13 @@ function updateSummary() {
     'Minuman':       false,
   };
 
-  selected.forEach(m => {
-    // Sayur category in menuData might be named 'Sayur' or 'Sayuran'.
-    // Let's handle both dynamically by normalizing or matching.
-    const key = m.category === 'Sayuran' ? 'Sayur' : m.category;
-    if (Object.prototype.hasOwnProperty.call(fulfilled, key)) {
-      fulfilled[key] = true;
+  selected.forEach(function(m) {
+    if (fulfilled.hasOwnProperty(m.category)) {
+      fulfilled[m.category] = true;
     }
   });
 
-  const chkMap = {
+  var chkMap = {
     'Makanan Pokok': 'chk-pokok',
     'Lauk-Pauk':     'chk-lauk',
     'Sayur':         'chk-sayur',
@@ -229,21 +196,27 @@ function updateSummary() {
     'Minuman':       'chk-minuman',
   };
 
-  Object.entries(chkMap).forEach(([cat, elemId]) => {
-    document.getElementById(elemId).classList.toggle('fulfilled', fulfilled[cat]);
+  Object.keys(chkMap).forEach(function(cat) {
+    var el = document.getElementById(chkMap[cat]);
+    if (fulfilled[cat]) {
+      el.classList.add('fulfilled');
+    } else {
+      el.classList.remove('fulfilled');
+    }
   });
 
-  /* "Menu Seimbang!" badge — only show if ALL 5 categories fulfilled */
-  const allFulfilled = Object.values(fulfilled).every(Boolean);
+  // Badge "Menu Seimbang!" — hanya tampil jika ke-5 kategori terpenuhi
+  var allFulfilled = Object.keys(fulfilled).every(function(k) { return fulfilled[k]; });
   badge.style.display = allFulfilled ? 'flex' : 'none';
 }
 
 /* =========================================================
    FILTER BAR
    ========================================================= */
-document.querySelectorAll('.filter-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+var filterButtons = document.querySelectorAll('.filter-btn');
+filterButtons.forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    filterButtons.forEach(function(b) { b.classList.remove('active'); });
     btn.classList.add('active');
     activeFilter = btn.dataset.filter;
     renderTable();
@@ -251,55 +224,9 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
 });
 
 /* =========================================================
-   SCROLL REVEAL (IntersectionObserver)
-   ========================================================= */
-function initScrollReveal() {
-  const targets = document.querySelectorAll(
-    '.concept-card, .favorite-card, .section-header'
-  );
-  targets.forEach(el => el.classList.add('reveal'));
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12 });
-
-  targets.forEach(el => observer.observe(el));
-}
-
-/* =========================================================
-   SMOOTH ACTIVE NAV LINK (highlight on scroll)
-   ========================================================= */
-function initNavHighlight() {
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-link');
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        navLinks.forEach(link => {
-          link.classList.toggle(
-            'active',
-            link.getAttribute('href') === `#${entry.target.id}`
-          );
-        });
-      }
-    });
-  }, { rootMargin: '-50% 0px -50% 0px' });
-
-  sections.forEach(s => observer.observe(s));
-}
-
-/* =========================================================
    INIT
    ========================================================= */
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function() {
   renderTable();
   updateSummary();
-  initScrollReveal();
-  initNavHighlight();
 });
