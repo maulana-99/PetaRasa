@@ -1,6 +1,3 @@
-/* =========================================================
-   PETARASA — Simple & Clean Style
-   ========================================================= */
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
@@ -19,9 +16,6 @@
   --nav-h:     60px;
 }
 
-/* =========================================================
-   RESET
-   ========================================================= */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html  { scroll-behavior: smooth; }
 body  { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.6; }
@@ -29,18 +23,12 @@ img   { display: block; max-width: 100%; }
 a     { text-decoration: none; color: inherit; }
 ul    { list-style: none; }
 
-/* =========================================================
-   LAYOUT
-   ========================================================= */
 .container {
   max-width: 1100px;
   margin: 0 auto;
   padding: 0 24px;
 }
 
-/* =========================================================
-   NAV
-   ========================================================= */
 header {
   position: sticky;
   top: 0;
@@ -82,9 +70,6 @@ header {
   background: rgba(255,255,255,0.15);
 }
 
-/* =========================================================
-   BUTTONS
-   ========================================================= */
 .btn {
   display: inline-block;
   padding: 10px 22px;
@@ -106,9 +91,6 @@ header {
 .btn-white { background: #fff; color: var(--accent); border-color: #fff; }
 .btn-white:hover { background: #f0fdf4; }
 
-/* =========================================================
-   SECTION HEADER
-   ========================================================= */
 .section-header { margin-bottom: 36px; text-align: center; }
 
 .section-subtitle {
@@ -127,9 +109,6 @@ header {
   color: var(--text);
 }
 
-/* =========================================================
-   HERO
-   ========================================================= */
 .hero {
   background: var(--accent);
   color: #fff;
@@ -177,9 +156,6 @@ header {
 }
 .hero-img { width: 100%; height: 100%; object-fit: cover; }
 
-/* =========================================================
-   CONCEPT SECTION
-   ========================================================= */
 .concept {
   padding: 72px 0;
   background: var(--surface);
@@ -223,9 +199,6 @@ header {
   line-height: 1.6;
 }
 
-/* =========================================================
-   FAVORITES
-   ========================================================= */
 .favorites {
   padding: 72px 0;
   background: var(--bg);
@@ -262,9 +235,6 @@ header {
 
 .fav-price { font-size: 0.95rem; font-weight: 700; color: var(--accent); }
 
-/* =========================================================
-   PLANNER SECTION
-   ========================================================= */
 .planner-section {
   padding: 72px 0;
   background: var(--surface);
@@ -277,7 +247,6 @@ header {
   align-items: start;
 }
 
-/* Left panel */
 .menu-table-panel {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -296,7 +265,6 @@ header {
   margin-bottom: 12px;
 }
 
-/* Filter */
 .filter-bar { display: flex; gap: 6px; flex-wrap: wrap; }
 
 .filter-btn {
@@ -314,7 +282,6 @@ header {
 .filter-btn:hover { background: var(--bg); color: var(--text); }
 .filter-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
 
-/* Table */
 .table-responsive { overflow-x: auto; }
 
 #menu-table { width: 100%; border-collapse: collapse; }
@@ -357,7 +324,6 @@ header {
 .col-name { font-weight: 600; color: var(--text); min-width: 140px; }
 .col-calories, .col-price { white-space: nowrap; }
 
-/* Category Badges */
 .badge {
   display: inline-block;
   padding: 2px 9px;
@@ -374,7 +340,6 @@ header {
 
 .menu-checkbox { width: 16px; height: 16px; cursor: pointer; accent-color: var(--accent); }
 
-/* Right panel / Sidebar */
 .planner-sidebar-panel {
   position: sticky;
   top: calc(var(--nav-h) + 16px);
@@ -397,7 +362,6 @@ header {
   color: var(--text);
 }
 
-/* Card title with SVG icon */
 .card-title {
   display: flex;
   align-items: center;
@@ -409,7 +373,6 @@ header {
 }
 .card-title svg { flex-shrink: 0; color: var(--accent); }
 
-/* Plate */
 .plate-container {
   width: 200px;
   height: 200px;
@@ -454,7 +417,6 @@ header {
   box-shadow: 0 1px 4px rgba(0,0,0,0.12);
 }
 
-/* Selected names list */
 .selected-names-title {
   font-size: 0.72rem;
   font-weight: 700;
@@ -481,7 +443,6 @@ header {
   border-left: 3px solid var(--accent);
 }
 
-/* Empty state */
 .empty-state {
   color: var(--muted);
   font-size: 0.83rem;
@@ -489,7 +450,6 @@ header {
   padding: 16px 0;
 }
 
-/* Summary rows */
 .summary-row {
   display: flex;
   justify-content: space-between;
@@ -502,7 +462,6 @@ header {
 .summary-label { color: var(--muted); }
 .summary-value { font-weight: 700; color: var(--text); }
 
-/* Checklist */
 .checklist-title {
   font-size: 0.75rem;
   font-weight: 700;
@@ -558,7 +517,6 @@ header {
   transform: rotate(45deg) translate(-1px, -1px);
 }
 
-/* Badge Menu Seimbang */
 #balanced-menu-badge {
   display: none;
   align-items: center;
@@ -573,9 +531,6 @@ header {
   text-align: center;
 }
 
-/* =========================================================
-   FOOTER
-   ========================================================= */
 footer {
   background: #1b4332;
   color: #6ee7b7;
@@ -608,9 +563,6 @@ footer {
 
 .copyright { padding: 14px 0; font-size: 0.75rem; color: #2d6a4f; text-align: center; }
 
-/* =========================================================
-   RESPONSIVE
-   ========================================================= */
 @media (max-width: 1024px) {
   .hero-grid       { grid-template-columns: 1fr; gap: 32px; }
   .concept-grid    { grid-template-columns: repeat(3, 1fr); }
