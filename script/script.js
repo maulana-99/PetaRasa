@@ -1,4 +1,4 @@
-const menuData = [
+var menuData = [
   {
     id: 1,
     name: "Nasi Putih",
@@ -209,78 +209,66 @@ const menuData = [
   },
 ];
 
-let selectedIds = [];
-let activeFilter = "all";
+// Menyimpan ID menu yang sedang dipilih
+var selectedIds = [];
 
+// Menyimpan filter kategori yang aktif
+var activeFilter = "all";
+
+// Mengubah nama kategori menjadi nama kelas CSS
 function getCategoryClass(category) {
-  const map = {
-    "Makanan Pokok": "pokok",
-    "Lauk-Pauk": "lauk",
-    Sayur: "sayur",
-    Buah: "buah",
-    Minuman: "minuman",
-  };
-  return map[category] || "pokok";
+  if (category === "Makanan Pokok") return "pokok";
+  if (category === "Lauk-Pauk") return "lauk";
+  if (category === "Sayur") return "sayur";
+  if (category === "Buah") return "buah";
+  if (category === "Minuman") return "minuman";
+  return "pokok";
 }
 
-function formatRupiah(number) {
-  return new Intl.NumberFormat("id-ID").format(number);
+// Format angka menjadi format Rupiah (contoh: 18000 → "18.000")
+function formatRupiah(angka) {
+  return new Intl.NumberFormat("id-ID").format(angka);
 }
 
+// Menampilkan semua baris tabel menu
 function renderTable() {
-  const tbody = document.getElementById("menu-table-body");
+  var tbody = document.getElementById("menu-table-body");
   tbody.innerHTML = "";
 
-  const visible =
-    activeFilter === "all"
-      ? menuData
-      : menuData.filter(function (m) {
-          return m.category === activeFilter;
-        });
+  for (var i = 0; i < menuData.length; i++) {
+    var menu = menuData[i];
 
-  visible.forEach(function (menu) {
-    const tr = document.createElement("tr");
-    if (selectedIds.indexOf(menu.id) !== -1) {
-      tr.classList.add("row-selected");
+    // Lewati menu yang tidak sesuai filter
+    if (activeFilter !== "all" && menu.category !== activeFilter) {
+      continue;
+    }
+
+    var sudahDipilih = selectedIds.indexOf(menu.id) !== -1;
+
+    var tr = document.createElement("tr");
+    if (sudahDipilih) {
+      tr.className = "row-selected";
     }
 
     tr.innerHTML =
-      '<td class="col-img"><img src="' +
-      menu.img +
-      '" alt="' +
-      menu.name +
-      '" loading="lazy"></td>' +
-      '<td class="col-name">' +
-      menu.name +
-      "</td>" +
-      '<td class="col-category"><span class="badge badge-' +
-      getCategoryClass(menu.category) +
-      '">' +
-      menu.category +
-      "</span></td>" +
-      '<td class="col-calories">' +
-      menu.calories +
-      " kkal</td>" +
-      '<td class="col-price">Rp ' +
-      formatRupiah(menu.price) +
-      "</td>" +
-      '<td class="col-select"><input type="checkbox" class="menu-checkbox" data-id="' +
-      menu.id +
-      '" ' +
-      (selectedIds.indexOf(menu.id) !== -1 ? "checked" : "") +
-      ' aria-label="Pilih ' +
-      menu.name +
-      '"></td>';
+      '<td class="col-img"><img src="' + menu.img + '" alt="' + menu.name + '" loading="lazy"></td>' +
+      '<td class="col-name">' + menu.name + "</td>" +
+      '<td class="col-category"><span class="badge badge-' + getCategoryClass(menu.category) + '">' + menu.category + "</span></td>" +
+      '<td class="col-calories">' + menu.calories + " kkal</td>" +
+      '<td class="col-price">Rp ' + formatRupiah(menu.price) + "</td>" +
+      '<td class="col-select"><input type="checkbox" class="menu-checkbox" data-id="' + menu.id + '" ' + (sudahDipilih ? "checked" : "") + ' aria-label="Pilih ' + menu.name + '"></td>';
 
     tbody.appendChild(tr);
-  });
+  }
 
+  // Pasang event listener pada setiap checkbox
   var checkboxes = tbody.querySelectorAll(".menu-checkbox");
-  checkboxes.forEach(function (cb) {
-    cb.addEventListener("change", handleCheckbox);
-  });
+  for (var i = 0; i < checkboxes.length; i++) {
+    checkboxes[i].addEventListener("change", handleCheckbox);
+  }
 }
 
+// Dipanggil saat pengguna mencentang atau melepas checkbox
 function handleCheckbox(e) {
   var id = Number(e.target.dataset.id);
   var row = e.target.closest("tr");
@@ -289,13 +277,15 @@ function handleCheckbox(e) {
     selectedIds.push(id);
     row.classList.add("row-selected");
   } else {
-    selectedIds.splice(selectedIds.indexOf(id), 1);
+    var index = selectedIds.indexOf(id);
+    selectedIds.splice(index, 1);
     row.classList.remove("row-selected");
   }
 
   updateSummary();
 }
 
+// Update tampilan piring, daftar nama, dan ringkasan kalori/harga
 function updateSummary() {
   var plateFoods = document.getElementById("plate-foods");
   var plateEmpty = document.getElementById("plate-empty");
@@ -305,10 +295,15 @@ function updateSummary() {
   var summaryCard = document.getElementById("summary-card");
   var badge = document.getElementById("balanced-menu-badge");
 
-  var selected = menuData.filter(function (m) {
-    return selectedIds.indexOf(m.id) !== -1;
-  });
+  // Kumpulkan menu yang dipilih ke array baru
+  var selected = [];
+  for (var i = 0; i < menuData.length; i++) {
+    if (selectedIds.indexOf(menuData[i].id) !== -1) {
+      selected.push(menuData[i]);
+    }
+  }
 
+  // Jika tidak ada yang dipilih, tampilkan kondisi kosong
   if (selected.length === 0) {
     plateFoods.innerHTML = "";
     plateEmpty.style.display = "flex";
@@ -319,14 +314,19 @@ function updateSummary() {
     return;
   }
 
+  // Sembunyikan pesan kosong, tampilkan konten
   plateEmpty.style.display = "none";
   emptyMsg.style.display = "none";
   summaryCard.style.display = "block";
   selectedNamesSection.style.display = "block";
 
+  // Isi gambar di piring (maksimal 6 gambar)
   plateFoods.innerHTML = "";
-  var maxPlate = Math.min(selected.length, 6);
-  for (var i = 0; i < maxPlate; i++) {
+  var maxGambar = selected.length;
+  if (maxGambar > 6) {
+    maxGambar = 6;
+  }
+  for (var i = 0; i < maxGambar; i++) {
     var img = document.createElement("img");
     img.src = selected[i].img;
     img.alt = selected[i].name;
@@ -335,74 +335,81 @@ function updateSummary() {
     plateFoods.appendChild(img);
   }
 
+  // Isi daftar nama menu yang dipilih
   selectedNameList.innerHTML = "";
-  selected.forEach(function (menu) {
+  for (var i = 0; i < selected.length; i++) {
     var li = document.createElement("li");
-    li.textContent = menu.name;
+    li.textContent = selected[i].name;
     selectedNameList.appendChild(li);
-  });
+  }
 
-  var totalCalories = selected.reduce(function (s, m) {
-    return s + m.calories;
-  }, 0);
-  var totalPrice = selected.reduce(function (s, m) {
-    return s + m.price;
-  }, 0);
+  // Hitung total kalori dan harga
+  var totalKalori = 0;
+  var totalHarga = 0;
+  for (var i = 0; i < selected.length; i++) {
+    totalKalori = totalKalori + selected[i].calories;
+    totalHarga = totalHarga + selected[i].price;
+  }
 
-  document.getElementById("total-calories").textContent =
-    totalCalories + " kkal";
-  document.getElementById("total-price").textContent =
-    "Rp " + formatRupiah(totalPrice);
+  document.getElementById("total-calories").textContent = totalKalori + " kkal";
+  document.getElementById("total-price").textContent = "Rp " + formatRupiah(totalHarga);
 
-  var fulfilled = {
-    "Makanan Pokok": false,
-    "Lauk-Pauk": false,
-    Sayur: false,
-    Buah: false,
-    Minuman: false,
-  };
+  // Cek apakah setiap kategori gizi sudah terpenuhi
+  var adaPokok = false;
+  var adaLauk = false;
+  var adaSayur = false;
+  var adaBuah = false;
+  var adaMinuman = false;
 
-  selected.forEach(function (m) {
-    if (fulfilled.hasOwnProperty(m.category)) {
-      fulfilled[m.category] = true;
-    }
-  });
+  for (var i = 0; i < selected.length; i++) {
+    if (selected[i].category === "Makanan Pokok") adaPokok = true;
+    if (selected[i].category === "Lauk-Pauk") adaLauk = true;
+    if (selected[i].category === "Sayur") adaSayur = true;
+    if (selected[i].category === "Buah") adaBuah = true;
+    if (selected[i].category === "Minuman") adaMinuman = true;
+  }
 
-  var chkMap = {
-    "Makanan Pokok": "chk-pokok",
-    "Lauk-Pauk": "chk-lauk",
-    Sayur: "chk-sayur",
-    Buah: "chk-buah",
-    Minuman: "chk-minuman",
-  };
+  // Update tampilan checklist per kategori
+  updateChecklist("chk-pokok", adaPokok);
+  updateChecklist("chk-lauk", adaLauk);
+  updateChecklist("chk-sayur", adaSayur);
+  updateChecklist("chk-buah", adaBuah);
+  updateChecklist("chk-minuman", adaMinuman);
 
-  Object.keys(chkMap).forEach(function (cat) {
-    var el = document.getElementById(chkMap[cat]);
-    if (fulfilled[cat]) {
-      el.classList.add("fulfilled");
-    } else {
-      el.classList.remove("fulfilled");
-    }
-  });
-
-  var allFulfilled = Object.keys(fulfilled).every(function (k) {
-    return fulfilled[k];
-  });
-  badge.style.display = allFulfilled ? "flex" : "none";
+  // Tampilkan badge jika semua 5 kategori terpenuhi
+  if (adaPokok && adaLauk && adaSayur && adaBuah && adaMinuman) {
+    badge.style.display = "flex";
+  } else {
+    badge.style.display = "none";
+  }
 }
 
+// Tambah atau hapus class "fulfilled" pada item checklist
+function updateChecklist(id, terpenuhi) {
+  var el = document.getElementById(id);
+  if (terpenuhi) {
+    el.classList.add("fulfilled");
+  } else {
+    el.classList.remove("fulfilled");
+  }
+}
+
+// Event listener untuk tombol filter kategori
 var filterButtons = document.querySelectorAll(".filter-btn");
-filterButtons.forEach(function (btn) {
-  btn.addEventListener("click", function () {
-    filterButtons.forEach(function (b) {
-      b.classList.remove("active");
-    });
-    btn.classList.add("active");
-    activeFilter = btn.dataset.filter;
+for (var i = 0; i < filterButtons.length; i++) {
+  filterButtons[i].addEventListener("click", function () {
+    // Hapus class active dari semua tombol
+    for (var j = 0; j < filterButtons.length; j++) {
+      filterButtons[j].classList.remove("active");
+    }
+    // Aktifkan tombol yang diklik
+    this.classList.add("active");
+    activeFilter = this.dataset.filter;
     renderTable();
   });
-});
+}
 
+// Jalankan saat halaman pertama kali selesai dimuat
 document.addEventListener("DOMContentLoaded", function () {
   renderTable();
   updateSummary();
